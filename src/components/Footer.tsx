@@ -13,19 +13,6 @@ export function Footer({ onBookingClick }: FooterProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <footer className="bg-slate-900 text-slate-300 py-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -64,24 +51,24 @@ export function Footer({ onBookingClick }: FooterProps) {
               Quick Links
             </h3>
             <nav className="space-y-2" aria-label="Footer navigation">
-              <button
-                onClick={() => scrollToSection('packages')}
-                className="block text-slate-400 hover:text-teal-400 transition-colors text-left"
+              <Link
+                to="/package"
+                className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
                 Package
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
-                className="block text-slate-400 hover:text-teal-400 transition-colors text-left"
+              </Link>
+              <Link
+                to="/testimonial"
+                className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
                 Testimonial
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
-                className="block text-slate-400 hover:text-teal-400 transition-colors text-left"
+              </Link>
+              <Link
+                to="/about"
+                className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
                 About
-              </button>
+              </Link>
             </nav>
           </div>
 

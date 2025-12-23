@@ -24,19 +24,6 @@ export function Navigation({ onBookingClick }: NavigationProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -69,24 +56,24 @@ export function Navigation({ onBookingClick }: NavigationProps) {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <button
-            onClick={() => scrollToSection('packages')}
+          <Link
+            to="/package"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Package
-          </button>
-          <button
-            onClick={() => scrollToSection('testimonials')}
+          </Link>
+          <Link
+            to="/testimonial"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Testimonial
-          </button>
-          <button
-            onClick={() => scrollToSection('about')}
+          </Link>
+          <Link
+            to="/about"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             About
-          </button>
+          </Link>
           <button
             onClick={onBookingClick}
             className="bg-teal-700 text-white px-6 py-2 rounded-[8px] hover:bg-teal-800 transition-colors"
