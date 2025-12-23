@@ -27,7 +27,8 @@ function HomePage() {
   useEffect(() => {
     if (location.hash) {
       const sectionId = location.hash.substring(1);
-      setTimeout(() => {
+      // Wait a bit longer to ensure DOM is ready, especially after redirects
+      const scrollToSection = () => {
         const element = document.getElementById(sectionId);
         if (element) {
           const offset = 80;
@@ -37,8 +38,12 @@ function HomePage() {
             top: offsetPosition,
             behavior: 'smooth'
           });
+        } else {
+          // Retry if element not found yet
+          setTimeout(scrollToSection, 50);
         }
-      }, 100);
+      };
+      setTimeout(scrollToSection, 150);
     } else if (location.pathname === '/') {
       window.scrollTo(0, 0);
     }
@@ -71,7 +76,9 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<Navigate to="/#about" replace />} />
         <Route path="/package" element={<Navigate to="/#packages" replace />} />
+        <Route path="/packages" element={<Navigate to="/#packages" replace />} />
         <Route path="/testimonial" element={<Navigate to="/#testimonials" replace />} />
+        <Route path="/testimonials" element={<Navigate to="/#testimonials" replace />} />
       </Routes>
     </BrowserRouter>
   );

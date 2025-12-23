@@ -52,13 +52,13 @@ export function Footer({ onBookingClick }: FooterProps) {
             </h3>
             <nav className="space-y-2" aria-label="Footer navigation">
               <Link
-                to="/package"
+                to="/packages"
                 className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
                 Package
               </Link>
               <Link
-                to="/testimonial"
+                to="/testimonials"
                 className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
                 Testimonial

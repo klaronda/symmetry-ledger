@@ -57,13 +57,13 @@ export function Navigation({ onBookingClick }: NavigationProps) {
 
         <div className="hidden md:flex items-center gap-8">
           <Link
-            to="/package"
+            to="/packages"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Package
           </Link>
           <Link
-            to="/testimonial"
+            to="/testimonials"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Testimonial
