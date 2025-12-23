@@ -60,13 +60,13 @@ export function Navigation({ onBookingClick }: NavigationProps) {
             to="/packages"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
-            Package
+            Packages
           </Link>
           <Link
             to="/testimonials"
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
-            Testimonial
+            Testimonials
           </Link>
           <Link
             to="/about"

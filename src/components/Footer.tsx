@@ -55,13 +55,13 @@ export function Footer({ onBookingClick }: FooterProps) {
                 to="/packages"
                 className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
-                Package
+                Packages
               </Link>
               <Link
                 to="/testimonials"
                 className="block text-slate-400 hover:text-teal-400 transition-colors"
               >
-                Testimonial
+                Testimonials
               </Link>
               <Link
                 to="/about"
