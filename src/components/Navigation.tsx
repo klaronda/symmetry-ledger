@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface NavigationProps {
   onBookingClick: () => void;
@@ -7,9 +7,7 @@ interface NavigationProps {
 
 export function Navigation({ onBookingClick }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,29 +20,20 @@ export function Navigation({ onBookingClick }: NavigationProps) {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (isHomePage) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      navigate('/');
-    }
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavClick = (path: string, sectionId?: string) => {
-    if (isHomePage && sectionId) {
-      // On home page, scroll to section
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    } else {
-      // Navigate to route
-      navigate(path);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -81,19 +70,19 @@ export function Navigation({ onBookingClick }: NavigationProps) {
 
         <div className="hidden md:flex items-center gap-8">
           <button
-            onClick={() => handleNavClick('/package', 'packages')}
+            onClick={() => scrollToSection('packages')}
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Package
           </button>
           <button
-            onClick={() => handleNavClick('/testimonial', 'testimonials')}
+            onClick={() => scrollToSection('testimonials')}
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             Testimonial
           </button>
           <button
-            onClick={() => handleNavClick('/about', 'about')}
+            onClick={() => scrollToSection('about')}
             className="text-slate-300 hover:text-teal-400 transition-colors"
           >
             About
