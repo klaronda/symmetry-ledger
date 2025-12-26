@@ -17,9 +17,9 @@ const testimonials = [
     business: "Retail Owner"
   },
   {
-    quote: "Having accurate financials made business planning straightforward. Highly recommend.",
-    name: "David Kim",
-    business: "Restaurant Owner"
+    quote: "There is no way I could have been successful without Joseph's meticulous and dependable financial work. He consistently delivered clarity, accuracy, and insight under pressure.",
+    name: "Angela Chatman",
+    business: "Chief Financial Officer, Fourth Street Clinic"
   }
 ];
 
