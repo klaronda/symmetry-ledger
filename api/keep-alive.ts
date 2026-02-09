@@ -11,36 +11,39 @@ export const config = {
   maxDuration: 10,
 };
 
-export default async function handler(
-  _req: { method?: string },
-  res: { status: (code: number) => { json: (body: object) => void } }
-) {
+function jsonResponse(body: object, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
+export async function GET(_req: Request): Promise<Response> {
   const supabaseUrl = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    return res.status(500).json({
-      ok: false,
-      error: 'Missing SUPABASE_URL or SUPABASE_ANON_KEY in environment',
-    });
+    return jsonResponse(
+      { ok: false, error: 'Missing SUPABASE_URL or SUPABASE_ANON_KEY in environment' },
+      500
+    );
   }
 
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
-    // Lightweight query - just enough to register as activity
     const { error } = await supabase.from('leads').select('id').limit(1);
     if (error) throw error;
 
-    return res.status(200).json({
+    return jsonResponse({
       ok: true,
       message: 'Supabase keep-alive ping succeeded',
       timestamp: new Date().toISOString(),
     });
   } catch (err) {
     console.error('Keep-alive error:', err);
-    return res.status(500).json({
-      ok: false,
-      error: err instanceof Error ? err.message : 'Unknown error',
-    });
+    return jsonResponse(
+      { ok: false, error: err instanceof Error ? err.message : 'Unknown error' },
+      500
+    );
   }
 }
